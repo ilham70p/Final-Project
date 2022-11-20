@@ -20,7 +20,6 @@ namespace Business.Concrete
         {
             _authDal = authDal;
             _hashingHandler = hashingHandler;
-            _hashingHandler = hashingHandler;
         }
 
         public UselessUser GetUserByEmail(string email)

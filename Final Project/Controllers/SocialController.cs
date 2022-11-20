@@ -40,8 +40,7 @@ namespace Final_Project.Controllers
         [HttpPut("update")]
         public void Put([FromForm] Social social,int Id) {
         
-        _manager.Update(social, Id);
-        
+            _manager.Update(social, Id);
         
         }
         
