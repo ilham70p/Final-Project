@@ -35,8 +35,8 @@ builder.Services.AddAuthentication(x =>
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         RequireExpirationTime = true,
         ValidIssuer = issuer,
         ValidAudience = audience
@@ -92,7 +92,7 @@ builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<ISocialDal, SocialDal>();
 builder.Services.AddScoped<ISocialManager, SocialManager>();
 
-builder.Services.AddScoped < IAuthDal, AuthDal>();
+builder.Services.AddScoped<IAuthDal, AuthDal>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
 builder.Services.AddAutoMapper(typeof(Program));
