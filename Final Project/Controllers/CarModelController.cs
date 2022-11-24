@@ -29,7 +29,7 @@ namespace Final_Project.Controllers
         }
 
         [HttpGet("get")]
-       public CarModel Get([FromForm]int Id) {
+       public CarModel Get(int Id) {
 
            return _manager.GetById(Id);
         

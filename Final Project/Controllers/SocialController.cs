@@ -24,7 +24,7 @@ namespace Final_Project.Controllers
         }
 
         [HttpGet("get")]
-       public Social Get([FromForm]int id) {
+       public Social Get(int id) {
 
             return _manager.GetSocial(id);
         }

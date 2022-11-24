@@ -28,7 +28,7 @@ namespace Final_Project.Controllers
 
 
         [HttpGet("getbyid")]
-       public Service GetById([FromForm] int id)
+       public Service GetById(int id)
         {
             return _manager.GetServiceById(id);
         }
@@ -49,7 +49,7 @@ namespace Final_Project.Controllers
         }
 
         [HttpPut("update")]
-        public void Update(int Id, [FromForm] Service service)
+        public void Update([FromForm] int Id, [FromForm] Service service)
         {
 
             _manager.UpdateService(service, Id);

@@ -28,7 +28,7 @@ namespace Final_Project.Controllers
 
 
         [HttpGet("Get")]
-       public Feature Get([FromForm] int id)
+       public Feature Get(int id)
         {
             return _manager.GetFeature(id);
         }

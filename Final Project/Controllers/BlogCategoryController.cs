@@ -25,7 +25,7 @@ namespace Final_Project.Controllers
         }
 
         [HttpGet("get")]
-        public BlogCategory Get([FromForm]int Id) {
+        public BlogCategory Get(int Id) {
             return _manager.GetById(Id);
         
         }

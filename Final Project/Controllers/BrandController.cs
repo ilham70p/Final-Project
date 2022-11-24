@@ -29,7 +29,7 @@ namespace Final_Project.Controllers
 
 
         [HttpGet("getbyid")]
-      public  Brand GetById([FromForm]int id)
+      public  Brand GetById(int id)
         {
             return _manager.GetBrandById(id);
         }
