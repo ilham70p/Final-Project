@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
 
 
         [HttpGet("get")]
-       public Dealer Get([FromForm] int id) {
+       public Dealer Get(int id) {
             return _manager.GetDealerById(id);
         }
 
