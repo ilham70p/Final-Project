@@ -49,7 +49,7 @@ namespace Final_Project.Controllers
         }
 
         [HttpPut("update")]
-        public void Update([FromForm] int Id, [FromForm] Service service)
+        public void Update(int Id, [FromForm] Service service)
         {
 
             _manager.UpdateService(service, Id);
