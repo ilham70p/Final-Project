@@ -38,7 +38,9 @@ namespace Business.Concrete
                                  DealerId=car.DealerId,
                                  Description=car.Description,
                                  CarModelId=car.CarModelId,
-                                 Price=car.Price };
+                                 Price=car.Price,
+                                 Title= car.Title  
+            };
             
             _carDal.Add(mycar);
             int carId = mycar.Id;
@@ -122,18 +124,29 @@ namespace Business.Concrete
 
         public List<Car> GetAllCars()
         {
-            return _carDal.GetAll();
+            return _carDal.GetAllCar();
         }
 
         public Car GetCarById(int Id)
         {
-            var car = _carDal.Get(Id);
+            var car = _carDal.GetCar(Id);
             return car;
         }
 
         public List<Car> GetCarsByPage(int pageNumber, int pageSize)
         {
             return _carDal.GetAll().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        }
+
+        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandID, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
+        {
+           
+            List<Car> cars = _carDal.GetAll();
+            //if (!String.IsNullOrEmpty(q))
+            //{
+            //    cars = cars.Where(cars.title)
+            //}
+            return cars;
         }
     }
 }

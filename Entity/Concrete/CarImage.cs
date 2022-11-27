@@ -16,6 +16,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
+        public string Base64Image { get; set; }
         public string ImageName { get; set; }
         [ForeignKey("Car")]
         public int CarId { get; set; }

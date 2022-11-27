@@ -23,11 +23,19 @@ namespace DataAccess.Concrete
        
 
 
-        public List<Car> GetAllCars()
+        public List<Car> GetAllCar()
         {
 
             using (AppDbContext context = new()) {
 
+                //List<Car> cars = context.Cars.ToList();
+
+                //foreach(var car in cars)
+                //{
+                //    car.CarImages = context.CarImages.Where(c =>c.CarId == car.Id).ToList();
+                //}
+
+                //return cars;
                 return context.Cars.Include(c => c.CarImages).ToList();
 
             }

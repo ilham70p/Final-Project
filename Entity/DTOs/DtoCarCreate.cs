@@ -23,6 +23,7 @@ namespace Entities.DTOs
         public string Description { get; set; }
         public int CarModelId { get; set; }
         public int Price { get; set; }
+        public string Title { get; set; }
         public List<IFormFile> CarImages { get; set; }
     }
 }

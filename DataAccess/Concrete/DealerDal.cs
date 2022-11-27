@@ -41,6 +41,16 @@ namespace DataAccess.Concrete
             return fileName;
 
         }
+        public static string ConvertImage(string imgName, string path)
+        {
+            var filePath = path + imgName;
+            if (System.IO.File.Exists(filePath))
+            {
+                byte[] b = System.IO.File.ReadAllBytes(filePath);
+                return Convert.ToBase64String(b);
+            }
+            return null;
+        }
 
     }
 }

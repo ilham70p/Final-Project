@@ -16,5 +16,6 @@ namespace Business.Abstract
         void UpdateCar(int Id, DtoCarCreate car);
         void DeleteCar(int Id);
         List<Car> GetCarsByPage(int pageNumber, int pageSize);
+        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandID, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType);
     }
 }
