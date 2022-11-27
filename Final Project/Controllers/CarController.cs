@@ -31,6 +31,11 @@ namespace Final_Project.Controllers
              return  _manager.GetCarById(id);
         
         }
+        [HttpGet("getbypage")]
+        public List<Car> GetCarsByPage([FromQuery]int page, [FromQuery] int pageSize)
+        {
+            return _manager.GetCarsByPage(page, pageSize);
+        }
 
         [HttpPost("post")]
         public void Post([FromForm]DtoCarCreate car) {

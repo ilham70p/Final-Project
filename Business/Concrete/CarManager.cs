@@ -131,6 +131,9 @@ namespace Business.Concrete
             return car;
         }
 
-        
+        public List<Car> GetCarsByPage(int pageNumber, int pageSize)
+        {
+            return _carDal.GetAll().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        }
     }
 }

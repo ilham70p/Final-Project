@@ -15,5 +15,6 @@ namespace Business.Abstract
         void AddCar(DtoCarCreate car);
         void UpdateCar(int Id, DtoCarCreate car);
         void DeleteCar(int Id);
+        List<Car> GetCarsByPage(int pageNumber, int pageSize);
     }
 }
