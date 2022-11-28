@@ -26,19 +26,20 @@ namespace Business.Concrete
         public void AddDealer(DtoDealerCreate dealer)
         {
             _dealerDal.UploadImage(dealer.Image);
-            //    Dealer mydealer = new Dealer {Name=dealer.Name,
-            //        Email=dealer.Email,
-            //        WhatsApp=dealer.WhatsApp,
-            //        Mobile=dealer.Mobile,
-            //        Location=dealer.Location,
-            //        Description = dealer.Description,
-            //        ImageFile=dealer.Image,
-            //        ImageName= _dealerDal.UploadImage(dealer.Image)
-            //};
+                Dealer mydealer = new Dealer {
+                    Name=dealer.Name,
+                    Email=dealer.Email,
+                    WhatsApp=dealer.WhatsApp,
+                    Mobile=dealer.Mobile,
+                    Location=dealer.Location,
+                    Description = dealer.Description,
+                    ImageFile=dealer.Image,
+                    ImageName= _dealerDal.UploadImage(dealer.Image)
+            };
 
 
-            var mymodel =_mapper.Map<Dealer>(dealer);
-            _dealerDal.Add(mymodel);
+            //var mymodel =_mapper.Map<Dealer>(dealer);
+            _dealerDal.Add(mydealer);
         }
 
         public void DeleteDealer(int id)

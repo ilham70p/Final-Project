@@ -15,6 +15,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         [MaxLength(20)]
         public string BodyType { get; set; }
+        public string Title { get; set; }
         [MaxLength(15)]
         public string Transmission { get; set; }
         public int Year { get; set; }
