@@ -48,7 +48,7 @@ namespace DataAccess.Concrete
             using (AppDbContext context = new())
             {
 
-                return context.Cars.Include(b => b.CarImages).Where(a => a.Id == id).FirstOrDefault();
+                return context.Cars.Include(b => b.CarImages).FirstOrDefault(a => a.Id == id);
 
             }
 
