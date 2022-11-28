@@ -135,7 +135,7 @@ namespace Business.Concrete
 
         public List<Car> GetCarsByPage(int pageNumber, int pageSize)
         {
-            return _carDal.GetAll().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            return _carDal.GetAllCar().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
 
         public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandID, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)

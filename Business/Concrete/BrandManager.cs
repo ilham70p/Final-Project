@@ -22,8 +22,9 @@ namespace Business.Concrete
 
         public void AddBrand(DtoBrandCreate brand)
         {
-          string imageName  = _brandDal.UploadImage(brand.Image);
-            Brand mybrand = new Brand { Name=brand.Name,ImageFile=brand.Image,ImageName=imageName };
+            string imageName  = _brandDal.UploadImage(brand.Image);
+            string imageBase = _brandDal.ConvertImage(imageName);
+            Brand mybrand = new Brand { Name=brand.Name,ImageFile=brand.Image,ImageName=imageName,Base64Image=imageBase  };
             _brandDal.Add(mybrand);
         }
 

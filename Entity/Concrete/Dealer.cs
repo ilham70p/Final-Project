@@ -25,6 +25,7 @@ namespace Entities.Concrete
     [NotMapped]
     public IFormFile ImageFile { get; set; }
     public string ImageName { get; set; }
+    public string Base64Image { get; set; }
     public string Location { get; set; }
     public string Description { get; set; }
     public List<Car> Cars { get; set; }
