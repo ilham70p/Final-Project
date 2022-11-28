@@ -13,5 +13,6 @@ namespace DataAccess.Abstract
     {
         string UploadImage(IFormFile file);
         void DeleteImage(string fileName);
+        public string ConvertImage(string fileName);
     }
 }

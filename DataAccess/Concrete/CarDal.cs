@@ -18,10 +18,6 @@ namespace DataAccess.Concrete
 {
     public class CarDal : Repository<Car,AppDbContext>, ICarDal
     {
-     
-
-       
-
 
         public List<Car> GetAllCar()
         {
@@ -44,29 +40,11 @@ namespace DataAccess.Concrete
 
         public Car? GetCar(int id)
         {
-
             using (AppDbContext context = new())
             {
-
                 return context.Cars.Include(b => b.CarImages).FirstOrDefault(a => a.Id == id);
-
             }
-
-           
         }
-
-
-
-
-
-
-       
-
-
-
-
-
-
 
     }
 }

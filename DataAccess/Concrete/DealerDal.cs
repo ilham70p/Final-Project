@@ -41,15 +41,11 @@ namespace DataAccess.Concrete
             return fileName;
 
         }
-        public static string ConvertImage(string imgName, string path)
+        public string ConvertImage(string fileName)
         {
-            var filePath = path + imgName;
-            if (System.IO.File.Exists(filePath))
-            {
-                byte[] b = System.IO.File.ReadAllBytes(filePath);
-                return Convert.ToBase64String(b);
-            }
-            return null;
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", fileName);
+            byte[] b = System.IO.File.ReadAllBytes(filePath);
+            return Convert.ToBase64String(b);
         }
 
     }

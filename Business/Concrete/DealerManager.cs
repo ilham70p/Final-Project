@@ -2,6 +2,7 @@
 using AutoMapper.Internal.Mappers;
 using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -63,8 +64,8 @@ namespace Business.Concrete
         {
             _dealerDal.DeleteImage(_dealerDal.Get(Id).ImageName);
             string myimage =   _dealerDal.UploadImage(dealer.Image);
-
-            Dealer mydealer = new Dealer {Name=dealer.Name,Description=dealer.Description,Email=dealer.Email,WhatsApp=dealer.WhatsApp,Mobile=dealer.Mobile,Location=dealer.Location,ImageFile=dealer.Image,ImageName=myimage };
+            string imageBase = _dealerDal.ConvertImage(myimage);
+            Dealer mydealer = new Dealer {Name=dealer.Name,Description=dealer.Description,Email=dealer.Email,WhatsApp=dealer.WhatsApp,Mobile=dealer.Mobile,Location=dealer.Location,ImageFile=dealer.Image,ImageName=myimage, Base64Image=imageBase };
             _dealerDal.Update(mydealer);
         }
     }

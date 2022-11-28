@@ -25,15 +25,15 @@ namespace Business.Concrete
 
         public void AddCarImage(IFormFile carImage,int CarId)
         {
-          string imageName =  _imageDal.UploadImage(carImage);
-            string problem = ConvertImage(imageName);  
-          CarImage myimage = new CarImage {ImageName=imageName,CarId=CarId,Base64Image=problem  };
-          _imageDal.Add(myimage);          
+            string imageName =  _imageDal.UploadImage(carImage);
+            string imageBase = ConvertImage(imageName);  
+            CarImage myimage = new CarImage {ImageName=imageName,CarId=CarId,Base64Image=imageBase  };
+            _imageDal.Add(myimage);          
         }
 
         public void DeleteImage(int Id)
         {
-           CarImage myimage=  _imageDal.Get(Id);
+            CarImage myimage=  _imageDal.Get(Id);
             _imageDal.DeleteImageFromStorage(myimage.ImageName);
             _imageDal.Delete(myimage);
         }
