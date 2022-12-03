@@ -14,7 +14,7 @@ namespace DataAccess.Abstract
     public interface ICarDal:IRepository<Car>
     {
 
-        List<Car> GetAllCar();
-        Car GetCar(int id);
+        List<DtoCar> GetAllCar();
+        DtoCar GetCar(int id);
     }
 }

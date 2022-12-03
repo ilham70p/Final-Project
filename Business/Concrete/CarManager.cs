@@ -52,9 +52,9 @@ namespace Business.Concrete
 
         }
 
-        public void UpdateCar(int Id, DtoCarCreate car)
+        public void UpdateCar(int id, DtoCarCreate car)
         {
-          Car oldCar =  _carDal.GetCar(Id);
+          Car oldCar = _carDal.Get(id);
             if (car.CarImages!=null)
             {
                 foreach (var item in oldCar.CarImages)
@@ -114,7 +114,7 @@ namespace Business.Concrete
 
         public void DeleteCar(int Id)
         {
-            Car oldCar = _carDal.GetCar(Id);
+            var oldCar = _carDal.Get(Id);
             foreach (var item in oldCar.CarImages)
             {
                 _manager.DeleteImage(item.Id);
@@ -122,31 +122,21 @@ namespace Business.Concrete
             _carDal.Delete(oldCar);
         }
 
-        public List<Car> GetAllCars()
+        public List<DtoCar> GetAllCars()
         {
             return _carDal.GetAllCar();
         }
 
-        public Car GetCarById(int Id)
+        public DtoCar GetCarById(int Id)
         {
-            var car = _carDal.GetCar(Id);
-            return car;
+            return _carDal.GetCar(Id);
         }
 
-        public List<Car> GetCarsByPage(int pageNumber, int pageSize)
+        public List<DtoCar> GetCarsByPage(int pageNumber, int pageSize)
         {
             return _carDal.GetAllCar().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
 
-        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandID, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
-        {
-           
-            List<Car> cars = _carDal.GetAll();
-            //if (!String.IsNullOrEmpty(q))
-            //{
-            //    cars = cars.Where(cars.title)
-            //}
-            return cars;
-        }
+
     }
 }

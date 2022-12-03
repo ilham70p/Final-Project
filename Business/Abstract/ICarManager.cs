@@ -10,12 +10,11 @@ namespace Business.Abstract
 {
     public interface ICarManager
     {
-        List<Car> GetAllCars();
-        Car GetCarById(int Id);
+        List<DtoCar> GetAllCars();
+        DtoCar GetCarById(int Id);
         void AddCar(DtoCarCreate car);
         void UpdateCar(int Id, DtoCarCreate car);
         void DeleteCar(int Id);
-        List<Car> GetCarsByPage(int pageNumber, int pageSize);
-        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandID, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType);
+        List<DtoCar> GetCarsByPage(int pageNumber, int pageSize);
     }
 }

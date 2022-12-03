@@ -19,20 +19,21 @@ namespace Final_Project.Controllers
         }
 
         [HttpGet("getall")]
-       public List<Car> GetAll() {
+       public List<DtoCar> GetAll() {
+            var cars = _manager.GetAllCars();
 
-            return _manager.GetAllCars();
+            return cars;
 
         }
 
         [HttpGet("get")]
-        public Car Get(int id) {
+        public DtoCar Get(int id) {
         
              return  _manager.GetCarById(id);
         
         }
         [HttpGet("getbypage")]
-        public List<Car> GetCarsByPage([FromQuery]int page, [FromQuery] int pageSize)
+        public List<DtoCar> GetCarsByPage([FromQuery]int page, [FromQuery] int pageSize)
         {
             return _manager.GetCarsByPage(page, pageSize);
         }

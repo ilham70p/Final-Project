@@ -19,32 +19,108 @@ namespace DataAccess.Concrete
     public class CarDal : Repository<Car,AppDbContext>, ICarDal
     {
 
-        public List<Car> GetAllCar()
+        public List<DtoCar> GetAllCar()
         {
-
             using (AppDbContext context = new()) {
+                var cars = context.Cars.Include(c => c.CarImages).Include(c=>c.Dealer).Include(c=>c.CarModel).ToList();
+                var images = context.CarImages;
+                List<DtoCar> result = new ();
 
-                //List<Car> cars = context.Cars.ToList();
-
-                //foreach(var car in cars)
-                //{
-                //    car.CarImages = context.CarImages.Where(c =>c.CarId == car.Id).ToList();
-                //}
-
-                //return cars;
-                return context.Cars.Include(c => c.CarImages).ToList();
-
+                for (int i = 0; i < cars.Count; i++)
+                {
+                    List<string> pics = new();
+                    foreach (CarImage img in images.Where(c=>c.CarId == cars[i].Id))
+                    {
+                        pics.Add(img.Base64Image);
+                    }
+                    DtoCar carList = new()
+                    {
+                        Id = cars[i].Id,
+                        BodyType = cars[i].BodyType,
+                        Transmission = cars[i].Transmission,
+                        Year = cars[i].Year,
+                        DriveType = cars[i].DriveType,
+                        ExteriorColor = cars[i].ExteriorColor,
+                        Milage = cars[i].Milage,
+                        EngineSize = cars[i].EngineSize,
+                        FuelType = cars[i].FuelType,
+                        Condition = cars[i].Condition,
+                        InteriorColor = cars[i].InteriorColor,
+                        DealerId = cars[i].DealerId,
+                        CarModelId = cars[i].CarModelId,
+                        Price = cars[i].Price,
+                        Description = cars[i].Description,
+                        CarImages = pics
+                    };
+                    result.Add(carList);
+                }
+                return result;
             }
-          
         }
 
-        public Car? GetCar(int id)
+        public DtoCar? GetCar(int id)
         {
             using (AppDbContext context = new())
             {
-                return context.Cars.Include(b => b.CarImages).FirstOrDefault(a => a.Id == id);
+                var cars = context.Cars.Include(c => c.CarImages).Include(c => c.Dealer).Include(c => c.CarModel).FirstOrDefault(c => c.Id == id);
+                var images = context.CarImages.Where(c => c.CarId == id).ToList();
+
+                //    Car car = cars[i];
+                //    List<CarImage> pic = cars[i].CarImages;
+                List<string> pics = new();
+                foreach (CarImage img in images.Where(c => c.CarId == cars.Id))
+                {
+                    pics.Add(img.Base64Image);
+                }
+                DtoCar result = new()
+                {
+                    Id = cars.Id,
+                    BodyType = cars.BodyType,
+                    Transmission = cars.Transmission,
+                    Year = cars.Year,
+                    DriveType = cars.DriveType,
+                    ExteriorColor = cars.ExteriorColor,
+                    Milage = cars.Milage,
+                    EngineSize = cars.EngineSize,
+                    FuelType = cars.FuelType,
+                    Condition = cars.Condition,
+                    InteriorColor = cars.InteriorColor,
+                    DealerId = cars.DealerId,
+                    CarModelId = cars.CarModelId,
+                    Price = cars.Price,
+                    Description = cars.Description,
+                    CarImages = pics
+                };
+                return result;
             }
         }
+
+        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
+        {
+            using (AppDbContext context = new())
+            {
+                var cars = context.Cars.Include(c => c.CarImages).AsQueryable();
+                if (!String.IsNullOrEmpty(q))
+                {
+                    cars = cars.Where(c => c.Title.Contains(q));
+                }
+                if (brandId.HasValue)
+                {
+                    cars = cars.Where(c => c.CarModel.BrandId == brandId);
+                }
+                if (minPrice.HasValue && maxPrice.HasValue)
+                {
+                    cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
+                }
+
+                return cars.ToList();
+            }
+        }
+        //public List<Blog> Similar(int catId, string userId, int blogId)
+        //{
+        //    return _context.Blogs.OrderByDescending(x => x.Hit).Include(x => x.Category).Include(x => x.K205User)
+        //        .Where(x => x.CategoryID == catId && x.K205UserId == userId && x.ID != blogId).Take(2).ToList();
+        //}
 
     }
 }
