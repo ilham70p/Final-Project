@@ -95,12 +95,12 @@ namespace DataAccess.Concrete
             }
         }
 
-        public List<Car> Filter(int? categoryId, string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
+        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
         {
             using (AppDbContext context = new())
             {
                 var cars = context.Cars.Include(c => c.CarImages).AsQueryable();
-                if (!String.IsNullOrEmpty(q))
+                if (!string.IsNullOrEmpty(q))
                 {
                     cars = cars.Where(c => c.Title.Contains(q));
                 }
@@ -113,9 +113,13 @@ namespace DataAccess.Concrete
                     cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
                 }
 
+
                 return cars.ToList();
             }
         }
+
+
+
         //public List<Blog> Similar(int catId, string userId, int blogId)
         //{
         //    return _context.Blogs.OrderByDescending(x => x.Hit).Include(x => x.Category).Include(x => x.K205User)

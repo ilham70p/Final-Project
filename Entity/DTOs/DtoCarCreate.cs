@@ -9,15 +9,15 @@ namespace Entities.DTOs
 {
     public class DtoCarCreate
     {
-        public string BodyType { get; set; }
-        public string Transmission { get; set; }
-        public int Year { get; set; }
-        public string DriveType { get; set; }
+        public int BodyTypeId { get; set; }
+        public int TransmissionId { get; set; }
+        public DateOnly Year { get; set; }
+        public int DriveTypeId { get; set; }
         public string ExteriorColor { get; set; }
         public int Milage { get; set; }
         public float EngineSize { get; set; }
         public string FuelType { get; set; }
-        public string Condition { get; set; }
+        public bool Condition { get; set; }
         public string InteriorColor { get; set; }
         public int DealerId { get; set; }
         public string Description { get; set; }
@@ -25,5 +25,7 @@ namespace Entities.DTOs
         public int Price { get; set; }
         public string Title { get; set; }
         public List<IFormFile> CarImages { get; set; }
+        public int OfferTypeId { get; set; }
+        public int OwnerTypeId { get; set; }
     }
 }

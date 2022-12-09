@@ -29,5 +29,13 @@ namespace DataAccess
         public DbSet<Service> Services { get; set; }
         public DbSet<Social> Socials { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<OfferType> OfferTypes { get; set; }
+        public DbSet<OwnerType> OwnerTypes { get; set; }
+        public DbSet<DrivingType> DrivingTypes { get; set; }
+        public DbSet<BodyType> BodyTypes { get; set; }
+        public DbSet<Transmission> Transmissions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
     }
 }

@@ -9,18 +9,27 @@ using Core.Entity;
 
 namespace Entities.Concrete
 {
+    public enum Color
+    {
+        Red,
+        Green,
+        Yellow
+    }
     public class Car:IEntity
     {
         [Key]
         public int Id { get; set; }
         [MaxLength(20)]
-        public string BodyType { get; set; }
+        public int BodyTypeId { get; set; }
+        public BodyType BodyType { get; set; }
         public string Title { get; set; }
         [MaxLength(15)]
-        public string Transmission { get; set; }
-        public int Year { get; set; }
+        public int TransmissionId { get; set; }
+        public Transmission Transmission { get; set; }
+        public DateOnly Year { get; set; }
         [MaxLength(10)]
-        public string DriveType { get; set; }
+        public int DriveTypeId { get; set; }
+        public DrivingType DriveType { get; set; }
         [MaxLength(20)]
         public string ExteriorColor { get; set; }
         public int Milage { get; set; }
@@ -28,7 +37,7 @@ namespace Entities.Concrete
         [MaxLength(20)]
         public string FuelType { get; set; }
         [MaxLength(20)]
-        public string Condition { get; set; }
+        public bool Condition { get; set; } //false - new, true - used
         [MaxLength(20)]
         public string InteriorColor { get; set; }
         [ForeignKey("Dealer")]
@@ -42,5 +51,16 @@ namespace Entities.Concrete
         public int CarModelId { get; set; }
         public CarModel CarModel { get; set; }
         public int Price { get; set; }
+        //public Color Color { get; set; }
+        public bool SellerType { get; set; }//false - individual, true - dealer
+        // how to implement this....
+        // wait to implement what!?!?!?! i already forgor
+        // Oh right the color!
+        public int OfferTypeId { get; set; }
+        public OfferType OfferType { get; set; }
+        public int OwnerTypeId { get; set; }
+        public OwnerType OwnerType { get; set; }
     }
+
+    
 }

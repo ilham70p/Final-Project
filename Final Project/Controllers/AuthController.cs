@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Concrete;
 using Core.Entity.Models;
 using Core.Security.Hashing;
 using Core.Security.TokenHandler;
@@ -25,14 +26,14 @@ namespace Final_Project.Controllers
         private readonly IAuthManager _authManager;
         private readonly TokenGenerator _tokenGenerator;
         private readonly HashingHandler _hashingHandler;
+        private readonly IRoleMananger _roleManager;
 
-
-        public AuthController(IAuthManager authManager, TokenGenerator tokenGenerator, HashingHandler hashingHandler)
+        public AuthController(IAuthManager authManager, TokenGenerator tokenGenerator, HashingHandler hashingHandler, IRoleMananger roleManager)
         {
             _authManager = authManager;
             _tokenGenerator = tokenGenerator;
             _hashingHandler = hashingHandler;
-  
+            _roleManager = roleManager;
         }
 
         [HttpPost("login")]
@@ -44,9 +45,9 @@ namespace Final_Project.Controllers
             if (user.Email == model.Email && user.Password == _hashingHandler.PasswordHash(model.Password))
             {
 
-                
+                var role = _roleManager.GetRole(user.Id);
                 var resultUser = new DtoUser(user.Id, user.FullName, user.Email);
-                resultUser.Token = _tokenGenerator.Token(user);
+                resultUser.Token = _tokenGenerator.Token(user, role.Name);
 
                 return Ok(new { status = 200, message = resultUser });
             }
@@ -92,5 +93,10 @@ namespace Final_Project.Controllers
             return _authManager.GetUsers();
         }
 
+        [HttpGet("getuserbyrole/{userId}")]
+        public async Task<Role> GetUserByRole(int userId)
+        {
+            return _roleManager.GetRole(userId);
+        }
     }
 }

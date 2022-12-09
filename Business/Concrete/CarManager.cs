@@ -25,10 +25,10 @@ namespace Business.Concrete
         }
         public void AddCar(DtoCarCreate car)
         {
-            Car mycar = new Car {BodyType = car.BodyType, 
-                                 Transmission = car.Transmission,
+            Car mycar = new Car {BodyTypeId = car.BodyTypeId, 
+                                 TransmissionId = car.TransmissionId,
                                  Year = car.Year, 
-                                 DriveType = car.DriveType, 
+                                 DriveTypeId = car.DriveTypeId, 
                                  ExteriorColor = car.ExteriorColor,
                                  Milage=car.Milage,
                                  EngineSize=car.EngineSize,
@@ -39,7 +39,10 @@ namespace Business.Concrete
                                  Description=car.Description,
                                  CarModelId=car.CarModelId,
                                  Price=car.Price,
-                                 Title= car.Title  
+                                 Title= car.Title,
+                                 //Color=Color.Green,
+                                 OwnerTypeId=car.OwnerTypeId,
+                                 OfferTypeId=car.OfferTypeId,
             };
             
             _carDal.Add(mycar);
@@ -63,10 +66,10 @@ namespace Business.Concrete
                 }
 
 
-                    oldCar.BodyType = car.BodyType;
-                    oldCar.Transmission = car.Transmission;
+                    oldCar.BodyTypeId = car.BodyTypeId;
+                    oldCar.TransmissionId = car.TransmissionId;
                     oldCar.Year = car.Year;
-                    oldCar.DriveType = car.DriveType;
+                    oldCar.DriveTypeId = car.DriveTypeId;
                     oldCar.ExteriorColor = car.ExteriorColor;
                     oldCar.Milage = car.Milage;
                     oldCar.EngineSize = car.EngineSize;
@@ -77,6 +80,9 @@ namespace Business.Concrete
                     oldCar.Description = car.Description;
                     oldCar.CarModelId = car.CarModelId;
                     oldCar.Price = car.Price;
+                oldCar.OfferTypeId = car.OfferTypeId;
+                oldCar.OwnerTypeId = car.OwnerTypeId;
+                
                 
 
 
@@ -92,10 +98,10 @@ namespace Business.Concrete
             {
 
 
-                oldCar.BodyType = car.BodyType;
-                oldCar.Transmission = car.Transmission;
+                oldCar.BodyTypeId = car.BodyTypeId;
+                oldCar.TransmissionId = car.TransmissionId;
                 oldCar.Year = car.Year;
-                oldCar.DriveType = car.DriveType;
+                oldCar.DriveTypeId = car.DriveTypeId;
                 oldCar.ExteriorColor = car.ExteriorColor;
                 oldCar.Milage = car.Milage;
                 oldCar.EngineSize = car.EngineSize;
@@ -106,7 +112,8 @@ namespace Business.Concrete
                 oldCar.Description = car.Description;
                 oldCar.CarModelId = car.CarModelId;
                 oldCar.Price = car.Price;
-
+                oldCar.OfferTypeId = car.OfferTypeId;
+                oldCar.OwnerTypeId = car.OwnerTypeId;
                 _carDal.Update(oldCar);
             }
 

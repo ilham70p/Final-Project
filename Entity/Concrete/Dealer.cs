@@ -21,7 +21,7 @@ namespace Entities.Concrete
     [MaxLength(20)]
     public string Mobile { get; set; }
     [MaxLength(20)]
-    public string WhatsApp { get; set; }
+    public string? WhatsApp { get; set; }
     [NotMapped]
     public IFormFile ImageFile { get; set; }
     public string ImageName { get; set; }
@@ -29,7 +29,7 @@ namespace Entities.Concrete
     public string Location { get; set; }
     public string Description { get; set; }
     public List<Car> Cars { get; set; }
-
+    //Is dealer just a special kind of user?
     
     }
 }
