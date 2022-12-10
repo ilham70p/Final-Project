@@ -18,9 +18,19 @@ namespace Business.Concrete
             _roleDal = roleDal;
         }
 
-        public Role GetRole(int userId)
+        public Role GetUserRole(int userId)
         {
             return _roleDal.GetUserRole(userId);
+        }
+
+        public void AddRole(Role role)
+        {
+            _roleDal.Add(role);
+        }
+
+        public Role GetRole(int roleId)
+        {
+            return _roleDal.Get(roleId);
         }
     }
 }

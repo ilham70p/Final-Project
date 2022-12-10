@@ -27,5 +27,15 @@ namespace Business.Concrete
             };
             _userRoleDal.Add(userRole);
         }
+
+        public void AssignRole(int userId, int roleId)
+        {
+            UserRole userRole = new()
+            {
+                RoleId = roleId,
+                UserId = userId
+            };
+            _userRoleDal.Add(userRole);
+        }
     }
 }

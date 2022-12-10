@@ -45,7 +45,7 @@ namespace Final_Project.Controllers
             if (user.Email == model.Email && user.Password == _hashingHandler.PasswordHash(model.Password))
             {
 
-                var role = _roleManager.GetRole(user.Id);
+                var role = _roleManager.GetUserRole(user.Id);
                 var resultUser = new DtoUser(user.Id, user.FullName, user.Email);
                 resultUser.Token = _tokenGenerator.Token(user, role.Name);
 
@@ -93,10 +93,10 @@ namespace Final_Project.Controllers
             return _authManager.GetUsers();
         }
 
-        [HttpGet("getuserbyrole/{userId}")]
-        public async Task<Role> GetUserByRole(int userId)
+        [HttpGet("getuserrole/{userId}")]
+        public async Task<Role> GetUserRole(int userId)
         {
-            return _roleManager.GetRole(userId);
+            return _roleManager.GetUserRole(userId);
         }
     }
 }

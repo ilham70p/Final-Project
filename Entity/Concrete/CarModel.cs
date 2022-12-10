@@ -19,6 +19,6 @@ namespace Entities.Concrete
         [Required]
         public Brand Brand { get; set; }
         public List<Car> Cars { get; set; }
-        public List<Feature> Features { get; set; }
+        public Feature Features { get; set; }
     }
 }

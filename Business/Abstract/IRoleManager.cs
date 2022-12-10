@@ -9,6 +9,8 @@ namespace Business.Abstract
 {
     public interface IRoleManager
     {
-        Role GetRole(int userId);
+        Role GetUserRole(int userId);
+        Role GetRole(int roleId);
+        public void AddRole(Role role);
     }
 }
