@@ -11,7 +11,7 @@ namespace Entities.DTOs
     {
         public int BodyTypeId { get; set; }
         public int TransmissionId { get; set; }
-        public DateOnly Year { get; set; }
+        public DateTime Year { get; set; }
         public int DriveTypeId { get; set; }
         public string ExteriorColor { get; set; }
         public int Milage { get; set; }

@@ -22,6 +22,23 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Core.Entity.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Core.Entity.Models.UselessUser", b =>
                 {
                     b.Property<int>("Id")
@@ -51,6 +68,29 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Core.Entity.Models.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
@@ -104,6 +144,23 @@ namespace DataAccess.Migrations
                     b.ToTable("BlogCategories");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.BodyType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BodyTypes");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Brand", b =>
                 {
                     b.Property<int>("Id")
@@ -138,18 +195,16 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("BodyType")
-                        .IsRequired()
+                    b.Property<int>("BodyTypeId")
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("int");
 
                     b.Property<int>("CarModelId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Condition")
-                        .IsRequired()
+                    b.Property<bool>("Condition")
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("bit");
 
                     b.Property<int>("DealerId")
                         .HasColumnType("int");
@@ -158,10 +213,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DriveType")
-                        .IsRequired()
+                    b.Property<int>("DriveTypeId")
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("int");
 
                     b.Property<float>("EngineSize")
                         .HasColumnType("real");
@@ -184,26 +238,44 @@ namespace DataAccess.Migrations
                     b.Property<int>("Milage")
                         .HasColumnType("int");
 
+                    b.Property<int>("OfferTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OwnerTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<bool>("SellerType")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Transmission")
-                        .IsRequired()
+                    b.Property<int>("TransmissionId")
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<int>("Year")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Year")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BodyTypeId");
 
                     b.HasIndex("CarModelId");
 
                     b.HasIndex("DealerId");
+
+                    b.HasIndex("DriveTypeId");
+
+                    b.HasIndex("OfferTypeId");
+
+                    b.HasIndex("OwnerTypeId");
+
+                    b.HasIndex("TransmissionId");
 
                     b.ToTable("Cars");
                 });
@@ -296,13 +368,29 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("WhatsApp")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Dealers");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.DrivingType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DrivingTypes");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Feature", b =>
@@ -368,6 +456,40 @@ namespace DataAccess.Migrations
                     b.ToTable("Features");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.OfferType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OfferTypes");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.OwnerType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OwnerTypes");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -421,6 +543,42 @@ namespace DataAccess.Migrations
                     b.ToTable("Socials");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Transmission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transmissions");
+                });
+
+            modelBuilder.Entity("Core.Entity.Models.UserRole", b =>
+                {
+                    b.HasOne("Core.Entity.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entity.Models.UselessUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Concrete.Blog", b =>
                 {
                     b.HasOne("Entities.Concrete.BlogCategory", "BlogCategory")
@@ -434,6 +592,12 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.Car", b =>
                 {
+                    b.HasOne("Entities.Concrete.BodyType", "BodyType")
+                        .WithMany()
+                        .HasForeignKey("BodyTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Entities.Concrete.CarModel", "CarModel")
                         .WithMany("Cars")
                         .HasForeignKey("CarModelId")
@@ -446,9 +610,43 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Concrete.DrivingType", "DriveType")
+                        .WithMany()
+                        .HasForeignKey("DriveTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.OfferType", "OfferType")
+                        .WithMany()
+                        .HasForeignKey("OfferTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.OwnerType", "OwnerType")
+                        .WithMany()
+                        .HasForeignKey("OwnerTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.Transmission", "Transmission")
+                        .WithMany()
+                        .HasForeignKey("TransmissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BodyType");
+
                     b.Navigation("CarModel");
 
                     b.Navigation("Dealer");
+
+                    b.Navigation("DriveType");
+
+                    b.Navigation("OfferType");
+
+                    b.Navigation("OwnerType");
+
+                    b.Navigation("Transmission");
                 });
 
             modelBuilder.Entity("Entities.Concrete.CarImage", b =>

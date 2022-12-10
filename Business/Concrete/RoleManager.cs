@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class RoleManager : IRoleMananger
+    public class RoleManager : IRoleManager
     {
         private readonly IRoleDal _roleDal;
 

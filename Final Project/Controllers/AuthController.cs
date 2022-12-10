@@ -26,9 +26,9 @@ namespace Final_Project.Controllers
         private readonly IAuthManager _authManager;
         private readonly TokenGenerator _tokenGenerator;
         private readonly HashingHandler _hashingHandler;
-        private readonly IRoleMananger _roleManager;
+        private readonly IRoleManager _roleManager;
 
-        public AuthController(IAuthManager authManager, TokenGenerator tokenGenerator, HashingHandler hashingHandler, IRoleMananger roleManager)
+        public AuthController(IAuthManager authManager, TokenGenerator tokenGenerator, HashingHandler hashingHandler, IRoleManager roleManager)
         {
             _authManager = authManager;
             _tokenGenerator = tokenGenerator;

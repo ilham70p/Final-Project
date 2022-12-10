@@ -9,20 +9,22 @@ namespace Entities.DTOs
     public class DtoCar
     {
         public int Id { get; set; }
-        public string BodyType { get; set; }
-        public string Transmission { get; set; }
-        public int Year { get; set; }
-        public string DriveType { get; set; }
+        public int BodyTypeId { get; set; }
+        public int TransmissionId { get; set; }
+        public DateTime Year { get; set; }
+        public int DriveTypeId { get; set; }
         public string ExteriorColor { get; set; }
         public int Milage { get; set; }
         public float EngineSize { get; set; }
         public string FuelType { get; set; }
-        public string Condition { get; set; }
+        public bool Condition { get; set; }
         public string InteriorColor { get; set; }
         public int DealerId { get; set; }
         public string Description { get; set; }
         public int CarModelId { get; set; }
         public int Price { get; set; }
         public List<string> CarImages { get; set; }
+        public int OfferTypeId { get; set; }
+        public int OwnerTypeId { get; set; }
     }
 }

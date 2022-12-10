@@ -26,7 +26,7 @@ namespace Entities.Concrete
         [MaxLength(15)]
         public int TransmissionId { get; set; }
         public Transmission Transmission { get; set; }
-        public DateOnly Year { get; set; }
+        public DateTime Year { get; set; }
         [MaxLength(10)]
         public int DriveTypeId { get; set; }
         public DrivingType DriveType { get; set; }

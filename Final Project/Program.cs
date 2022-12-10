@@ -95,10 +95,30 @@ builder.Services.AddScoped<ISocialManager, SocialManager>();
 builder.Services.AddScoped<IAuthDal, AuthDal>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
+builder.Services.AddScoped<IBodyTypeDal, BodyTypeDal>();
+builder.Services.AddScoped<IBodyTypeManager, BodyTypeManager>();
+
+builder.Services.AddScoped<IDriveTypeDal, DriveTypeDal>();
+builder.Services.AddScoped<IDriveTypeManager, DriveTypeManager>();
+
+builder.Services.AddScoped<IOfferTypeDal, OfferTypeDal>();
+builder.Services.AddScoped<IOfferTypeManager, OfferTypeManager>();
+
+builder.Services.AddScoped<IOwnerTypeDal, OwnerTypeDal>();
+builder.Services.AddScoped<IOwnerTypeManager, OwnerTypeManager>();
+
+builder.Services.AddScoped<ITransmissionDal, TransmissionDal>();
+builder.Services.AddScoped<ITransmissionManager, TransmissionManager>();
+
+builder.Services.AddScoped<IRoleDal, RoleDal>();
+builder.Services.AddScoped<IRoleManager, RoleManager>();
+
+builder.Services.AddScoped<IUserRoleDal, UserRoleDal>();
+builder.Services.AddScoped<IUserRoleManager, UserRoleManager>();
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<HashingHandler>();
-
 
 builder.Services.AddScoped<TokenGenerator>();
 builder.Services.AddScoped<JWTConfig>();

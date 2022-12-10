@@ -15,7 +15,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=FinalProjectDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=FinalProjectoDB;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
 
         public DbSet<UselessUser> Users { get; set; }

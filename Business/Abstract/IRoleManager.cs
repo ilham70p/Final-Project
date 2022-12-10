@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IRoleMananger
+    public interface IRoleManager
     {
         Role GetRole(int userId);
     }

@@ -36,10 +36,10 @@ namespace DataAccess.Concrete
                     DtoCar carList = new()
                     {
                         Id = cars[i].Id,
-                        BodyType = cars[i].BodyType,
-                        Transmission = cars[i].Transmission,
+                        BodyTypeId = cars[i].BodyTypeId,
+                        TransmissionId = cars[i].TransmissionId,
                         Year = cars[i].Year,
-                        DriveType = cars[i].DriveType,
+                        DriveTypeId = cars[i].DriveTypeId,
                         ExteriorColor = cars[i].ExteriorColor,
                         Milage = cars[i].Milage,
                         EngineSize = cars[i].EngineSize,
@@ -75,10 +75,10 @@ namespace DataAccess.Concrete
                 DtoCar result = new()
                 {
                     Id = cars.Id,
-                    BodyType = cars.BodyType,
-                    Transmission = cars.Transmission,
+                    BodyTypeId = cars.BodyTypeId,
+                    TransmissionId = cars.TransmissionId,
                     Year = cars.Year,
-                    DriveType = cars.DriveType,
+                    DriveTypeId = cars.DriveTypeId,
                     ExteriorColor = cars.ExteriorColor,
                     Milage = cars.Milage,
                     EngineSize = cars.EngineSize,
@@ -95,7 +95,7 @@ namespace DataAccess.Concrete
             }
         }
 
-        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, int? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
+        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, DateTime? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
         {
             using (AppDbContext context = new())
             {
