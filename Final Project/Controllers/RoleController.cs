@@ -13,9 +13,10 @@ namespace Final_Project.Controllers
         private readonly IRoleManager _roleManager;
         private readonly IUserRoleManager _userRoleManager;
 
-        public RoleController(IRoleManager roleManager)
+        public RoleController(IRoleManager roleManager, IUserRoleManager userRoleManager)
         {
             _roleManager = roleManager;
+            _userRoleManager = userRoleManager;
         }
 
         [HttpGet("getrole")]

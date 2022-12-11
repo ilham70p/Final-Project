@@ -95,7 +95,7 @@ namespace DataAccess.Concrete
             }
         }
 
-        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, string? condition, string? bodyType, DateTime? year, string? transmission, string? driveType, int? milage, string? ownerType, string? sellerType)
+        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, bool? condition, int? bodyTypeId, DateTime? year, int? transmissionId, int? driveTypeId, int? minMilage, int? maxMilage, int? ownerTypeId, bool? sellerType, int? offerTypeId)
         {
             using (AppDbContext context = new())
             {
@@ -112,7 +112,65 @@ namespace DataAccess.Concrete
                 {
                     cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
                 }
+                if (minMilage.HasValue && maxMilage.HasValue)
+                {
+                    cars = cars.Where(c => c.Price >= minMilage && c.Price <= maxMilage);
+                }
 
+                if (sellerType.HasValue)
+                {
+                    cars = cars.Where(c => c.SellerType == sellerType);
+                }
+
+                if (condition.HasValue)
+                {
+                    cars = cars.Where(c => c.Condition == condition);
+                }
+
+                if (offerTypeId.HasValue)
+                {
+                    cars = cars.Where(c => c.OfferTypeId == offerTypeId);
+                }
+                if (bodyTypeId.HasValue)
+                {
+                    cars = cars.Where(c => c.BodyTypeId == bodyTypeId);
+                }
+                if (driveTypeId.HasValue)
+                {
+                    cars = cars.Where(c => c.DriveTypeId == driveTypeId);
+                }
+                if (ownerTypeId.HasValue)
+                {
+                    cars = cars.Where(c => c.OwnerTypeId == ownerTypeId);
+                }
+                if (offerTypeId.HasValue)
+                {
+                    cars = cars.Where(c => c.OwnerTypeId == ownerTypeId);
+                }
+                if (transmissionId.HasValue)
+                {
+                    cars = cars.Where(c => c.TransmissionId == transmissionId);
+                }
+                if (year.HasValue)
+                {
+                    cars = cars.Where(c => c.Year.Year == year.Value.Year);
+                }
+
+                if (sortBy.HasValue)
+                {
+                    cars = sortBy.Value switch
+                    {
+                        1 => cars.OrderByDescending(c => c.PostDate),
+                        2 => cars.OrderBy(c => c.PostDate),
+                        3 => cars.OrderByDescending(c => c.Price),
+                        4 => cars.OrderBy(c => c.Price),
+                        5 => cars.OrderByDescending(c => c.Milage),
+                        6 => cars.OrderBy(c => c.Milage),
+                        7 => cars.OrderByDescending(c => c.Year),
+                        8 => cars.OrderBy(c => c.Year),
+                        _ => cars.OrderByDescending(c => c.PostDate),
+                    };
+                }
 
                 return cars.ToList();
             }

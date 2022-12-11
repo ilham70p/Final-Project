@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public void AddModel([FromForm]DtoCarModel model)
         {
-            CarModel carmodel = new CarModel {Name=model.Name,BrandId=model.BrandId };
+            CarModel carmodel = new CarModel {Name=model.Name,BrandId=model.BrandId, FeatureId=model.FeatureId };
             _modelDal.Add(carmodel);
         }
       

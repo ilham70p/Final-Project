@@ -28,8 +28,5 @@ namespace Entities.Concrete
         public bool Navigation { get; set; }
         public bool PowerWindow { get; set; }
         public bool SteeringAdjust { get; set; }
-        [ForeignKey("CarModel")]
-        public int CarModelId { get; set; }
-        public CarModel CarModel { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Entities.Concrete
         public int BrandId { get; set; }
         [Required]
         public Brand Brand { get; set; }
-        public List<Car> Cars { get; set; }
+        public int FeatureId { get; set; }
         public Feature Features { get; set; }
     }
 }

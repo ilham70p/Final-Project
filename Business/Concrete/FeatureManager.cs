@@ -53,9 +53,7 @@ namespace Business.Concrete
             myfeature.AirCondition=feature.AirCondition;
             myfeature.Navigation=feature.Navigation;
             myfeature.Alloy=feature.Alloy;
-            myfeature.CarModelId=feature.CarModelId;
             myfeature.Radio = feature.Radio;
-            myfeature.CarModel=feature.CarModel;
             myfeature.Immobilizer=feature.Immobilizer;
             myfeature.Locking=feature.Locking;
             myfeature.Xenon = feature.Xenon;

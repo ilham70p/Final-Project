@@ -40,9 +40,9 @@ namespace Business.Concrete
                                  CarModelId=car.CarModelId,
                                  Price=car.Price,
                                  Title= car.Title,
-                                 //Color=Color.Green,
                                  OwnerTypeId=car.OwnerTypeId,
                                  OfferTypeId=car.OfferTypeId,
+                                 PostDate=DateTime.Now
             };
             
             _carDal.Add(mycar);
