@@ -14,9 +14,10 @@ namespace Final_Project.Controllers
         private readonly IWebHostEnvironment _environment;
         private readonly ICarManager _manager;
 
-        public CarController(ICarManager manager)
+        public CarController(ICarManager manager, IWebHostEnvironment environment)
         {
             _manager = manager;
+            _environment = environment;
         }
 
         [HttpGet("getall")]
