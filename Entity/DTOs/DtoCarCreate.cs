@@ -24,7 +24,7 @@ namespace Entities.DTOs
         public int CarModelId { get; set; }
         public int Price { get; set; }
         public string Title { get; set; }
-        public List<IFormFile> CarImages { get; set; }
+        public List<DtoCarImage> CarImages { get; set; }
         public int OfferTypeId { get; set; }
         public int OwnerTypeId { get; set; }
     }

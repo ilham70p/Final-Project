@@ -11,7 +11,7 @@ namespace Business.Abstract
 {
     public interface ICarImageManager
     {
-        void AddCarImage(IFormFile carImage,int CarId);
+        void AddCarImage(DtoCarImage carImage,int CarId);
         void DeleteImage(int Id);
 
     }

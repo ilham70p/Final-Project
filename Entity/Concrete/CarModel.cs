@@ -11,14 +11,11 @@ namespace Entities.Concrete
 {
     public class CarModel:IEntity
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        [ForeignKey("Brand")]
         public int BrandId { get; set; }
-        [Required]
         public Brand Brand { get; set; }
-        public int FeatureId { get; set; }
-        public Feature Features { get; set; }
+        public int? FeatureId { get; set; }
+        public Feature Feature { get; set; }
     }
 }

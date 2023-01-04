@@ -36,18 +36,13 @@ namespace DataAccess.Concrete
                     DtoCar carList = new()
                     {
                         Id = cars[i].Id,
-                        BodyTypeId = cars[i].BodyTypeId,
-                        TransmissionId = cars[i].TransmissionId,
                         Year = cars[i].Year,
-                        DriveTypeId = cars[i].DriveTypeId,
                         ExteriorColor = cars[i].ExteriorColor,
                         Milage = cars[i].Milage,
                         EngineSize = cars[i].EngineSize,
                         FuelType = cars[i].FuelType,
                         Condition = cars[i].Condition,
                         InteriorColor = cars[i].InteriorColor,
-                        DealerId = cars[i].DealerId,
-                        CarModelId = cars[i].CarModelId,
                         Price = cars[i].Price,
                         Description = cars[i].Description,
                         CarImages = pics
@@ -62,7 +57,7 @@ namespace DataAccess.Concrete
         {
             using (AppDbContext context = new())
             {
-                var cars = context.Cars.Include(c => c.CarImages).Include(c => c.Dealer).Include(c => c.CarModel).FirstOrDefault(c => c.Id == id);
+                var cars = context.Cars.Include(c => c.CarImages).Include(c => c.Dealer).Include(c => c.CarModel).Include(c => c.BodyType).Include(c => c.DriveType).Include(c => c.OfferType).Include(c => c.OwnerType).Include(c => c.Transmission).FirstOrDefault(c => c.Id == id);
                 var images = context.CarImages.Where(c => c.CarId == id).ToList();
 
                 //    Car car = cars[i];
@@ -75,18 +70,13 @@ namespace DataAccess.Concrete
                 DtoCar result = new()
                 {
                     Id = cars.Id,
-                    BodyTypeId = cars.BodyTypeId,
-                    TransmissionId = cars.TransmissionId,
                     Year = cars.Year,
-                    DriveTypeId = cars.DriveTypeId,
                     ExteriorColor = cars.ExteriorColor,
                     Milage = cars.Milage,
                     EngineSize = cars.EngineSize,
                     FuelType = cars.FuelType,
                     Condition = cars.Condition,
                     InteriorColor = cars.InteriorColor,
-                    DealerId = cars.DealerId,
-                    CarModelId = cars.CarModelId,
                     Price = cars.Price,
                     Description = cars.Description,
                     CarImages = pics

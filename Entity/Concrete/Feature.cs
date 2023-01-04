@@ -11,7 +11,6 @@ namespace Entities.Concrete
 {
     public class Feature:IEntity
     {
-        [Key]
         public int Id { get; set; }
         public bool ABS { get; set; }
         public bool AirCondition { get; set; }

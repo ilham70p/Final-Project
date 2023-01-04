@@ -23,11 +23,9 @@ namespace Business.Concrete
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public void AddCarImage(IFormFile carImage,int CarId)
-        {
-            string imageName =  _imageDal.UploadImage(carImage);
-            string imageBase = ConvertImage(imageName);  
-            CarImage myimage = new CarImage {ImageName=imageName,CarId=CarId,Base64Image=imageBase  };
+        public void AddCarImage(DtoCarImage carImage,int CarId)
+        { 
+            CarImage myimage = new CarImage {CarId=CarId, ImageName=carImage.ImageName};
             _imageDal.Add(myimage);          
         }
 

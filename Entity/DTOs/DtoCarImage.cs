@@ -9,6 +9,6 @@ namespace Entities.DTOs
     public class DtoCarImage
     {
         public string ImageName { get; set; }
-        public int carId { get; set; }
+        public int CarId { get; set; }
     }
 }
