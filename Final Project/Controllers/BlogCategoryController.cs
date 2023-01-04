@@ -30,13 +30,13 @@ namespace Final_Project.Controllers
         
         }
 
-        [HttpPost("post")]
+        [HttpPost("add")]
         public void Post([FromForm]DtoBlogCategory category) {
 
             _manager.AddBlogCategory(category);
         }
 
-        [HttpPut("put")]
+        [HttpPut("update")]
         public void Put([FromForm] DtoBlogCategory category,[FromForm] int Id)
         {
             _manager.UpdateBlogCategory(Id, category);

@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpGet("getbyid")]
+        [HttpGet("get")]
        public Service GetById(int id)
         {
             return _manager.GetServiceById(id);

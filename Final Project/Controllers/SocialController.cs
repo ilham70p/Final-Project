@@ -30,15 +30,15 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpPost("post")]
-        public void Post([FromForm]Social social) {
+        [HttpPost("add")]
+        public void Add([FromForm]Social social) {
 
             _manager.Add(social);
         
         }
 
         [HttpPut("update")]
-        public void Put([FromForm] Social social,int Id) {
+        public void Update([FromForm] Social social,int Id) {
         
             _manager.Update(social, Id);
         

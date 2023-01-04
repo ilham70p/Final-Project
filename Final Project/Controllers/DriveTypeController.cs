@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpGet("Get")]
+        [HttpGet("get")]
        public DrivingType Get(int id)
         {
             return _manager.GetDriveType(id);

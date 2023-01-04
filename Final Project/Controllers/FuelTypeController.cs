@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpGet("Get")]
+        [HttpGet("get")]
        public FuelType Get(int id)
         {
             return _manager.GetFuelType(id);

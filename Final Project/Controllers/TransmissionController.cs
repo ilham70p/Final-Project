@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpGet("Get")]
+        [HttpGet("get")]
        public Transmission Get(int id)
         {
             return _manager.GetTransmission(id);

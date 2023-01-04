@@ -27,7 +27,7 @@ namespace Final_Project.Controllers
         }
 
 
-        [HttpGet("Get")]
+        [HttpGet("get")]
        public OwnerType Get(int id)
         {
             return _manager.GetOwnerType(id);

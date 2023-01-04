@@ -19,18 +19,18 @@ namespace Final_Project.Controllers
             _userRoleManager = userRoleManager;
         }
 
-        [HttpGet("getrole")]
+        [HttpGet("get")]
         public Role Get([FromQuery]int id)
         {
             return _roleManager.GetRole(id);
         }
 
-        [HttpPost("addrole")]
+        [HttpPost("add")]
         public void Add([FromForm] Role role)
         {
             _roleManager.AddRole(role);
         }
-        [HttpPost("assignrole")]
+        [HttpPost("assign")]
         public void AssignRole(int userId, int roleId)
         {
             _userRoleManager.AssignRole(userId, roleId);
