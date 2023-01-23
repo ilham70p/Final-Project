@@ -36,14 +36,14 @@ namespace Final_Project.Controllers
         }
 
         [HttpPost("add")]
-        public void AddModel([FromForm]DtoCarModel model) {
+        public void AddModel([FromForm]DtoCarModelCreate model) {
         
         _manager.AddModel(model);
         
         }
 
         [HttpPut("update")]
-        public void UpdateModel([FromForm] DtoCarModel model,[FromForm]int id) {
+        public void UpdateModel([FromForm] DtoCarModelCreate model,[FromForm]int id) {
 
             _manager.UpdateModel(id, model);
         }

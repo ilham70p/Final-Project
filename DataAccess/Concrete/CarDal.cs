@@ -67,6 +67,32 @@ namespace DataAccess.Concrete
                 {
                     pics.Add(img.Base64Image);
                 }
+
+                Dealer dealer = cars.Dealer;
+                DtoDealer dtodealer = new()
+                {
+                    Name = dealer.Name,
+                    Mobile = dealer.Mobile,
+                    Id = dealer.Id,
+                    Email = dealer.Email,
+                    WhatsApp = dealer.WhatsApp,
+                    Image = dealer.Base64Image,
+                    Location = dealer.Location,
+                    Description = dealer.Description,
+                };
+                CarModel model = cars.CarModel;
+                DtoBrand dtoBrand = new() 
+                {
+                    Id = model.BrandId,
+                    Name = model.Brand.Name,
+                    Image = model.Brand.Base64Image
+                };
+                DtoCarModel dtomodel = new()
+                {
+                    Feature = model.Feature,
+                    Brand = dtoBrand
+                };
+
                 DtoCar result = new()
                 {
                     Id = cars.Id,
@@ -79,7 +105,10 @@ namespace DataAccess.Concrete
                     InteriorColor = cars.InteriorColor,
                     Price = cars.Price,
                     Description = cars.Description,
-                    CarImages = pics
+                    CarImages = pics,
+                    Dealer = dtodealer,
+                    CarModel = dtomodel,
+                    PostDate = DateTime.Now,
                 };
                 return result;
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,9 @@ namespace Entities.DTOs
         public string FuelType { get; set; }
         public bool Condition { get; set; }
         public string InteriorColor { get; set; }
-        public string Dealer { get; set; }
+        public DtoDealer Dealer { get; set; }
         public string Description { get; set; }
-        public string CarModel { get; set; }
+        public DtoCarModel CarModel { get; set; }
         public int Price { get; set; }
         public List<string> CarImages { get; set; }
         public string OfferType { get; set; }

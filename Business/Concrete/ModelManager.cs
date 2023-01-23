@@ -20,7 +20,7 @@ namespace Business.Concrete
             _modelDal = modelDal;
         }
 
-        public void AddModel([FromForm]DtoCarModel model)
+        public void AddModel([FromForm]DtoCarModelCreate model)
         {
             CarModel carmodel = new CarModel {Name=model.Name,BrandId=model.BrandId, FeatureId=model.FeatureId };
             _modelDal.Add(carmodel);
@@ -41,7 +41,7 @@ namespace Business.Concrete
           return  _modelDal.Get(id);
         }
    
-        public void UpdateModel( int Id,DtoCarModel model)
+        public void UpdateModel( int Id,DtoCarModelCreate model)
         {
            CarModel mymodel = _modelDal.Get(Id);
            mymodel.BrandId = model.BrandId;

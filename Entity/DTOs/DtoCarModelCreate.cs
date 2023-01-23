@@ -1,5 +1,4 @@
-﻿using Entities.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class DtoCarModel
+    public class DtoCarModelCreate
     {
         public string Name { get; set; }
-        public DtoBrand Brand { get; set; }
-        public Feature Feature { get; set; }
+        public int BrandId { get; set; }
+        public int FeatureId { get; set; }
     }
 }

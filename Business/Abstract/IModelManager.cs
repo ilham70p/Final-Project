@@ -12,8 +12,8 @@ namespace Business.Abstract
     {
         List<CarModel> GetAll();
         CarModel GetById(int id);
-        void AddModel(DtoCarModel model);
-        void UpdateModel(int Id,DtoCarModel model);
+        void AddModel(DtoCarModelCreate model);
+        void UpdateModel(int Id,DtoCarModelCreate model);
         void DeleteModel(int Id);
     }
 }
