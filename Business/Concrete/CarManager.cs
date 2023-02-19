@@ -144,6 +144,9 @@ namespace Business.Concrete
             return _carDal.GetAllCar().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
         }
 
-
+        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, bool? condition, int? bodyTypeId, DateTime? year, int? transmissionId, int? driveTypeId, int? minMilage, int? maxMilage, int? ownerTypeId, bool? sellerType, int? offerTypeId)
+        {
+            return _carDal.Filter(q, minPrice, maxPrice, sortBy, brandId, condition, bodyTypeId, year, transmissionId, driveTypeId, minMilage, maxMilage, ownerTypeId, sellerType, offerTypeId);
+        }
     }
 }

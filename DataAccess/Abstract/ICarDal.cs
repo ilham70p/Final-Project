@@ -16,5 +16,6 @@ namespace DataAccess.Abstract
 
         List<DtoCar> GetAllCar();
         DtoCar GetCar(int id);
+        public List<Car> Filter(string? q, decimal? minPrice, decimal? maxPrice, int? sortBy, int? brandId, bool? condition, int? bodyTypeId, DateTime? year, int? transmissionId, int? driveTypeId, int? minMilage, int? maxMilage, int? ownerTypeId, bool? sellerType, int? offerTypeId);
     }
 }

@@ -21,7 +21,7 @@ namespace Final_Project.Controllers
         }
 
         
-        [HttpGet("getall"),Authorize]
+        [HttpGet("getall")]
        public List<Brand> GetAll()
         {
             return _manager.GetAllBrand();

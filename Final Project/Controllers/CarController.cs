@@ -41,7 +41,11 @@ namespace Final_Project.Controllers
         {
             return _manager.GetCarsByPage(page, pageSize);
         }
-
+        [HttpGet("Filter")]
+        public List<Car> Filter([FromQuery] string? q, [FromQuery] decimal? minPrice, [FromQuery] decimal? maxPrice, [FromQuery] int? sortBy, [FromQuery] int? brandId, [FromQuery] bool? condition, [FromQuery] int? bodyTypeId, [FromQuery] DateTime? year, [FromQuery] int? transmissionId, [FromQuery] int? driveTypeId, [FromQuery] int? minMilage, [FromQuery] int? maxMilage, [FromQuery] int? ownerTypeId, [FromQuery] bool? sellerType, [FromQuery] int? offerTypeId)
+        {
+            return _manager.Filter(q, minPrice, maxPrice, sortBy,brandId,condition,bodyTypeId, year, transmissionId,  driveTypeId, minMilage, maxMilage, ownerTypeId, sellerType, offerTypeId);
+        }
         [HttpPost("post")]
         public void Post([FromForm] DtoCarCreate car)
         {

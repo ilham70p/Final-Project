@@ -57,7 +57,7 @@ namespace DataAccess.Concrete
         {
             using (AppDbContext context = new())
             {
-                var cars = context.Cars.Include(c => c.CarImages).Include(c => c.Dealer).Include(c => c.CarModel).Include(c => c.BodyType).Include(c => c.DriveType).Include(c => c.OfferType).Include(c => c.OwnerType).Include(c => c.Transmission).FirstOrDefault(c => c.Id == id);
+                var cars = context.Cars.Include(c => c.CarImages).Include(c => c.Dealer).Include(c => c.CarModel).ThenInclude(c => c.Brand).Include(c => c.BodyType).Include(c => c.DriveType).Include(c => c.OfferType).Include(c => c.OwnerType).Include(c => c.Transmission).FirstOrDefault(c => c.Id == id);
                 var images = context.CarImages.Where(c => c.CarId == id).ToList();
 
                 //    Car car = cars[i];
@@ -119,60 +119,63 @@ namespace DataAccess.Concrete
             using (AppDbContext context = new())
             {
                 var cars = context.Cars.Include(c => c.CarImages).AsQueryable();
+                var result = new List<Car>();
+
                 if (!string.IsNullOrEmpty(q))
                 {
-                    cars = cars.Where(c => c.Title.Contains(q));
+                    result.AddRange(cars.Where(c => c.Title.Contains(q)));                 
                 }
                 if (brandId.HasValue)
                 {
-                    cars = cars.Where(c => c.CarModel.BrandId == brandId);
+                    result.AddRange(cars.Where(c => c.CarModel.BrandId == brandId).ToList());
                 }
                 if (minPrice.HasValue && maxPrice.HasValue)
                 {
-                    cars = cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice);
+                    
+                    result.AddRange(cars.Where(c => c.Price >= minPrice && c.Price <= maxPrice).ToList());
                 }
                 if (minMilage.HasValue && maxMilage.HasValue)
                 {
-                    cars = cars.Where(c => c.Price >= minMilage && c.Price <= maxMilage);
+                    result.AddRange(cars.Where(c => c.Milage >= minMilage && c.Milage <= maxMilage).ToList());
                 }
 
                 if (sellerType.HasValue)
                 {
-                    cars = cars.Where(c => c.SellerType == sellerType);
+                    result.AddRange(cars.Where(c => c.SellerType == sellerType).ToList());
                 }
 
                 if (condition.HasValue)
                 {
-                    cars = cars.Where(c => c.Condition == condition);
+                    result.AddRange(cars.Where(c => c.Condition == condition).ToList());
                 }
 
                 if (offerTypeId.HasValue)
                 {
-                    cars = cars.Where(c => c.OfferTypeId == offerTypeId);
+                    result.AddRange(cars.Where(c => c.OfferTypeId == offerTypeId).ToList());
                 }
                 if (bodyTypeId.HasValue)
                 {
-                    cars = cars.Where(c => c.BodyTypeId == bodyTypeId);
+                    result.AddRange(cars.Where(c => c.BodyTypeId == bodyTypeId).ToList());
                 }
                 if (driveTypeId.HasValue)
                 {
-                    cars = cars.Where(c => c.DriveTypeId == driveTypeId);
+                    result.AddRange(cars.Where(c => c.DriveTypeId == driveTypeId).ToList());
                 }
                 if (ownerTypeId.HasValue)
                 {
-                    cars = cars.Where(c => c.OwnerTypeId == ownerTypeId);
+                    result.AddRange(cars.Where(c => c.OwnerTypeId == ownerTypeId).ToList());
                 }
                 if (offerTypeId.HasValue)
                 {
-                    cars = cars.Where(c => c.OwnerTypeId == ownerTypeId);
-                }
+                    result.AddRange(cars.Where(c => c.OfferTypeId == offerTypeId).ToList());
+                }//replace to fueltype
                 if (transmissionId.HasValue)
                 {
-                    cars = cars.Where(c => c.TransmissionId == transmissionId);
+                    result.AddRange(cars.Where(c => c.TransmissionId == transmissionId).ToList());
                 }
                 if (year.HasValue)
                 {
-                    cars = cars.Where(c => c.Year.Year == year.Value.Year);
+                    result.AddRange(cars.Where(c => c.Year.Year == year.Value.Year).ToList());
                 }
 
                 if (sortBy.HasValue)
@@ -189,9 +192,10 @@ namespace DataAccess.Concrete
                         8 => cars.OrderBy(c => c.Year),
                         _ => cars.OrderByDescending(c => c.PostDate),
                     };
+                    result.AddRange(cars.ToList());
                 }
 
-                return cars.ToList();
+                return result;
             }
         }
 
